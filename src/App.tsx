@@ -104,7 +104,7 @@ type Props = ReturnType<typeof mapStateToProps>;
  * @param props.bounds - bounding box used to position camera
  * @param props.fields - List of fields to be rendered as polygons on the map
  */
-function App({ bounds, fields }: Props): JSX.Element {
+function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
   const dispatch = useDispatch();
 
   const mapRef = React.useRef<google.maps.Map | null>(null);
@@ -141,6 +141,9 @@ function App({ bounds, fields }: Props): JSX.Element {
     [bounds]
   );
 
+  React.useEffect(() => {
+    console.log(deviceEvents, "deviceEvents")
+  },[deviceEvents])
   return (
     <div id="app-root" className="app-root">
       <AppBar
