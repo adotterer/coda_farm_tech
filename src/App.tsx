@@ -142,8 +142,21 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
   );
 
   React.useEffect(() => {
-    console.log(deviceEvents, "deviceEvents")
-  },[deviceEvents])
+    console.log(deviceEvents.slice(0, 10), "deviceEvents")
+
+    // const readableTimes = deviceEvents.slice(0, 100).map((event) => {
+    //   const readableDate = new Date(event["event_timestamp"]);
+    //   const newEvent = event;
+    //   const timeStamp = readableDate.toString();
+    //   // console.log(typeof readableDate.getTime());
+    //   newEvent["event_timestamp"] = timeStamp;
+    //   return newEvent;
+    // })
+    // console.log(readableTimes)
+  }, [deviceEvents]);
+
+
+
   return (
     <div id="app-root" className="app-root">
       <AppBar
