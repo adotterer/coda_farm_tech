@@ -23,7 +23,6 @@ function propsAreEqual(props: Props, nextProps: Props): boolean {
  * @param props - All normal marker props
  */
 const MapMarker: React.FC<Props> = ({ label, ...props }) => {
-  console.log(label, "label")
   const labelMemo = React.useMemo((): google.maps.MarkerLabel => {
     return {
       text: label,

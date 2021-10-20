@@ -5,7 +5,7 @@ import React from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { FieldPolygon, MapCard, MapMarkerMemoized } from "./components";
+import { FieldPolygon, MapCard, MapMarkerMemoized, DevicePin } from "./components";
 import {
   closeFieldInfoWindow,
   fetchDeviceEvents,
@@ -193,6 +193,12 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
               mapContainerClassName="map-container"
               center={FARM_LOCATION}
             >
+                {deviceEvents.map((event) => {
+                  return <DevicePin event={event} />
+                })}
+                 {fields.map((field) => (
+                <FieldPolygon key={field.id} fieldId={field.id} />
+              ))}
               {/* <SelectedFieldCard />
               {fields.map((field) => (
                 <FieldPolygon key={field.id} fieldId={field.id} />
