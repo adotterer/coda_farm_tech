@@ -4,8 +4,6 @@ const fs = require("fs");
 const data = {};
 
 eventData.forEach((event) => {
-  const deviceName = event["device_alias"];
-  // delete event["device_alias"];
   if (!data[event["device_alias"]]) {
     data[event["device_alias"]] = [event];
   } else {
