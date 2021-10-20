@@ -184,7 +184,21 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
         <Switch>
           <Route exact path="/events">
             <div className="events-page">
-              <Typography>TODO: Implement</Typography>
+              <GoogleMap
+              onLoad={getMapRef}
+              id="main-map"
+              mapTypeId="satellite"
+              options={MAP_OPTIONS}
+              zoom={13}
+              mapContainerClassName="map-container"
+              center={FARM_LOCATION}
+            >
+              {/* <SelectedFieldCard />
+              {fields.map((field) => (
+                <FieldPolygon key={field.id} fieldId={field.id} />
+              ))}
+              <MapMarkerMemoized label="Farm" position={FARM_LOCATION} /> */}
+            </GoogleMap>
             </div>
           </Route>
           <Route exact path="/">
