@@ -1,3 +1,9 @@
+export type MarkerLabel = {
+  text: string;
+  color: string;
+  id: number;
+}
+
 //! DO NOT MODIFY
 
 export type DeviceEvent = {
