@@ -11,7 +11,8 @@ const svgMarker = {
     rotation: 0,
     scale: 2,
 
-  };
+};
+  
 /**
  * Render a pin at the specified event
  *
