@@ -3,6 +3,10 @@ import { MarkerClusterer } from "@react-google-maps/api";
 import { DevicePin } from "./";
 import type { DeviceEvent} from "../types";
 
+
+function mouseOverCluster(cluster: any) {
+  console.log(cluster.getMarkers(), "cluster")
+}
 /**
  * Clusters events in the same area into one component
  *
@@ -12,7 +16,7 @@ import type { DeviceEvent} from "../types";
 
 export default function EventCluster({deviceEvents}: {deviceEvents: DeviceEvent[]}) {
   return (
-    <MarkerClusterer zoomOnClick={true} >
+    <MarkerClusterer onMouseOver={mouseOverCluster} zoomOnClick={true} >
       {(clusterer) => deviceEvents.map((event) => {
         return <DevicePin key={event.id} event={event} clusterer={clusterer} />
       })}
