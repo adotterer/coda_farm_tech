@@ -34,5 +34,5 @@ export default function DevicePin({ event, clusterer }: { event: DeviceEvent, cl
     clusterer={clusterer}
     position={{ lat, lng }}
     icon={svgMarker}
-    label={label}><LocationOnIcon />asdfasdfadf</Marker>;
+    label={label} />;
   }
