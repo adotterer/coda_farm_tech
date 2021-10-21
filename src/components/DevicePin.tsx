@@ -1,5 +1,5 @@
-import { Marker, MarkerProps } from "@react-google-maps/api";
 import React from "react";
+import { Marker } from "@react-google-maps/api";
 import type { DeviceEvent } from "../types";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
@@ -20,7 +20,6 @@ const svgMarker = {
  */
 
 export default function DevicePin({ event }: { event: DeviceEvent }): JSX.Element | null {
-  // const { gps: {location: {coordinates}} } = event;
   if (event.gps == null || event.gps.location == null) {
     return null;
   } else {
@@ -34,6 +33,5 @@ export default function DevicePin({ event }: { event: DeviceEvent }): JSX.Elemen
         text: event.device_alias,
         color: "white"
       }} />;
-    return <h1>Hello</h1>
   }
 }
