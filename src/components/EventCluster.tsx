@@ -49,5 +49,4 @@ export default function EventCluster({deviceEvents}: {deviceEvents: DeviceEvent[
           color: "white"
         }} />;
   }})}</MarkerClusterer>
-  return <h1>Hello</h1>
 }
