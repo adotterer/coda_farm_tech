@@ -177,19 +177,10 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
               mapContainerClassName="map-container"
               center={FARM_LOCATION}
               >
-                {/* {deviceEvents.map((event) => {
-                  return <DevicePin event={event} />
-                })} */}
                 <EventCluster deviceEvents={deviceEvents} />
-
                  {fields.map((field) => (
                 <FieldPolygon key={field.id} fieldId={field.id} />
               ))}
-              {/* <SelectedFieldCard />
-              {fields.map((field) => (
-                <FieldPolygon key={field.id} fieldId={field.id} />
-              ))}
-              <MapMarkerMemoized label="Farm" position={FARM_LOCATION} /> */}
             </GoogleMap>
             </div>
           </Route>
