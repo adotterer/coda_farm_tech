@@ -10,43 +10,13 @@ const svgMarker = {
     strokeWeight: 0,
     rotation: 0,
     scale: 2,
-
   };
 
 export default function EventCluster({deviceEvents}: {deviceEvents: DeviceEvent[]}) {
-  // const markers = deviceEvents.map((event) => {
-  //   // return <DevicePin event={event} />
-  //   if (!event.gps || !event.gps.location) {
-  //     return;
-  //   }
-  //     const { gps: { location: { coordinates: [lng, lat] } } } = event;
-  //     console.log(event.device_alias);
-  //     // return <LocationOnIcon />
-  //     return <Marker
-  //       position={{ lat, lng }}
-  //       icon={svgMarker}
-  //       label={{
-  //         text: event.device_alias,
-  //         color: "white"
-  //       }} />;
-  // }).filter(marker => !!marker);
-  // console.log(markers);
-
-  return <MarkerClusterer>{(clusterer) => deviceEvents.map((event) => {{
-    // return <DevicePin event={event} />
-    if (!event.gps || !event.gps.location) {
-      return;
-    }
-      const { gps: { location: { coordinates: [lng, lat] } } } = event;
-      console.log(event.device_alias);
-      // return <LocationOnIcon />
-    return <Marker
-        clusterer={clusterer}
-        position={{ lat, lng }}
-        icon={svgMarker}
-        label={{
-          text: event.device_alias,
-          color: "white"
-        }} />;
-  }})}</MarkerClusterer>
+  return (
+    <MarkerClusterer zoomOnClick={true} >
+      {(clusterer) => deviceEvents.map((event) => {
+        return <DevicePin key={event.id} event={event} clusterer={clusterer} />
+      })}
+    </MarkerClusterer>)
 }

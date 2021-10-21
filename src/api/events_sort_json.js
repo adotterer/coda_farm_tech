@@ -13,7 +13,6 @@ eventData.forEach((event) => {
 });
 
 for (key in data) {
-  console.log(key);
   data[key] = data[key].sort((a, b) => {
     // sort by newest to oldest
     return new Date(b["event_timestamp"]) - new Date(a["event_timestamp"]);

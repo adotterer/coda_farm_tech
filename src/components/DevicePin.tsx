@@ -17,21 +17,20 @@ const svgMarker = {
  *
  * @param props
  * @param props.event
+ * @param props.clusterer // sent to the children of MarkerClusterer in EventCluster.tsx
  */
 
-export default function DevicePin({ event }: { event: DeviceEvent }): JSX.Element | null {
-  if (event.gps == null || event.gps.location == null) {
+export default function DevicePin({ event, clusterer }: { event: DeviceEvent, clusterer: any }): JSX.Element |null {
+  if (!event.gps || !event.gps.location) {
     return null;
-  } else {
-    const { gps: {location: {coordinates: [lng, lat]}} } = event;
-    console.log(event.device_alias);
-    // return <LocationOnIcon />
-    return <Marker
-      position={{ lat, lng }}
-      icon={svgMarker}
-      label={{
-        text: event.device_alias,
-        color: "white"
-      }} />;
   }
-}
+
+  const { gps: { location: { coordinates: [lng, lat] } } } = event;
+  const label = { text: event.device_alias, color: "white" };
+
+  return <Marker
+    clusterer={clusterer}
+    position={{ lat, lng }}
+    icon={svgMarker}
+    label={label} />;
+  }
