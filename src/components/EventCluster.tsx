@@ -1,10 +1,11 @@
 import React from "react";
 import { MarkerClusterer } from "@react-google-maps/api";
+import { Cluster } from "@react-google-maps/marker-clusterer";
 import { DevicePin } from "./";
 import type { DeviceEvent} from "../types";
 
 
-function mouseOverCluster(cluster: any) {
+function mouseOverCluster(cluster: Cluster) {
   console.log(cluster.getMarkers(), "cluster")
 }
 /**

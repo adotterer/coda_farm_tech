@@ -1,5 +1,6 @@
 import React from "react";
 import { Marker } from "@react-google-maps/api";
+import { Clusterer } from "@react-google-maps/marker-clusterer";
 import type { DeviceEvent } from "../types";
 // import LocationOnIcon from '@mui/icons-material/LocationOn';
 
@@ -21,7 +22,7 @@ const svgMarker = {
  * @param props.clusterer // sent to the children of MarkerClusterer in EventCluster.tsx
  */
 
-export default function DevicePin({ event, clusterer }: { event: DeviceEvent, clusterer: any }): JSX.Element |null {
+export default function DevicePin({ event, clusterer }: { event: DeviceEvent, clusterer: Clusterer }): JSX.Element |null {
   if (!event.gps || !event.gps.location) {
     return null;
   }
