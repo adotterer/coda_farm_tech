@@ -30,7 +30,7 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
 
   if (typeof selectedEventId === "undefined" || !selectedEvent.device_alias) {
     return null;
-  } else if(!!selectedEvent){
+  } else {
   return (
     <MapCard id="event-card" title="Event">
       {selectedEventId}
