@@ -3,11 +3,11 @@ import { InfoWindow } from "@react-google-maps/api";
 import { MapCard } from ".";
 import type { DeviceEvent} from "../types";
 import { useDispatch, useSelector } from "react-redux";
-
+import {closeEventInfoWindow} from "../reducers"
 
 export default function SelectedEventCard({ deviceEvents }: { deviceEvents: DeviceEvent[] }): JSX.Element | null {
   const [selectedEvent, setSelectedEvent]: [selectedEvent: any, setSelectedEvent: any] = React.useState({device_alias: null})
-
+  const dispatch = useDispatch();
   const selectedEventId = useSelector((state) => {
     // const id: number  | undefined= state.deviceEvents.selectedId;
     // if (typeof id === "undefined") return;
@@ -15,6 +15,10 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
     return state.deviceEvents.selectedId;
   });
 
+
+   const handleClose = (): void => {
+    dispatch(closeEventInfoWindow());
+  };
 
   React.useEffect(() => {
     if (typeof selectedEventId === "number") {
@@ -32,7 +36,9 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
     return null;
   } else {
   return (
-    <MapCard id="event-card" title="Event">
+    <MapCard onClose={ }
+      id="event-card"
+      title={selectedEvent.device_alias}>
       {selectedEventId}
       <hr />
       {selectedEvent.device_alias}

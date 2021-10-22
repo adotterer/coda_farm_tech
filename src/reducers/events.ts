@@ -47,6 +47,9 @@ export const deviceEvents = createSlice({
     clickDeviceEvent(state, action: PayloadAction<number>) {
       state.selectedId = action.payload;
     },
+    closeEventInfoWindow(state) {
+      state.selectedId = undefined;
+    },
     clickClusterEvent(state, action: PayloadAction<any[]>) {
       state.clusterEvents = action.payload;
     }
@@ -85,7 +88,7 @@ export const deviceEvents = createSlice({
   },
 });
 
-export const { clickDeviceEvent, clickClusterEvent} = deviceEvents.actions;
+export const { clickDeviceEvent, clickClusterEvent, closeEventInfoWindow } = deviceEvents.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
