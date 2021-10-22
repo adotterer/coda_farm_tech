@@ -48,7 +48,6 @@ export const deviceEvents = createSlice({
       state.selectedId = action.payload;
     },
     clickClusterEvent(state, action: PayloadAction<any[]>) {
-      console.log(action.payload, "action payload from reducer");
       state.clusterEvents = action.payload;
     }
   },

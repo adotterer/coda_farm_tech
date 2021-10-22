@@ -3,10 +3,11 @@ span.event_marker {
   display: flex;
 }
 .event_device_pin {
+  transition: all 0.2s linear;
   background-color: rgba(194, 99, 21, 0.85);
   font-size: 2em;
   font-weight: 500;
-  line-height: 1.4em;
+  line-height: 1.2em;
   display: inline-flex;
   padding: 5px;
   border-radius: 5px;
@@ -16,7 +17,6 @@ span.event_marker {
   border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
-/* #main-map div[title] {
-  border: 5px solid chartreuse;
-  display: flex;
-} */
+.event_device_pin:hover {
+  background-color: rgba(194, 99, 21, 1);
+}

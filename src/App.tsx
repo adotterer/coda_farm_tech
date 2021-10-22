@@ -63,7 +63,7 @@ function SelectedFieldCard(): JSX.Element | null {
   return (
     <>
       <MapCard onClose={handleClose} id="field-card" title="Field">
-        {fieldData.fieldName}
+        {fieldData.fieldName}: this is here
       </MapCard>
       <InfoWindow onCloseClick={handleClose} position={fieldData.center}>
         <div>{fieldData.fieldName}</div>
