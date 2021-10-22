@@ -4,8 +4,14 @@ import { MapCard } from ".";
 import type { DeviceEvent} from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import { closeEventInfoWindow } from "../reducers";
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import SensorsIcon from '@mui/icons-material/Sensors';
+import SensorInfo from "./SensorInfo"
+// import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+// import SensorsIcon from '@mui/icons-material/Sensors';
+
+
+// TODO: ADD TYPE FOR STATE VARIABLES, ALSO THE TYPE OF PROPS
+
+// *****
 
 export default function SelectedEventCard({ deviceEvents }: { deviceEvents: DeviceEvent[] }): JSX.Element | null {
   const [selectedEvent, setSelectedEvent]: [selectedEvent: any, setSelectedEvent: any] = React.useState({device_alias: null})
@@ -32,7 +38,7 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
   } else {
     const { event_timestamp, gps: { location: { coordinates: [lng, lat] } } } = selectedEvent;
     const dateTimeFormat = new Date(event_timestamp);
-    const iconStyles = { fontSize: "24px", color: "black" };
+    // const iconStyles = { fontSize: "24px", color: "black" };
 
     return (
       <MapCard
@@ -55,8 +61,8 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
             {lng}
           </span>
         </div>
-
-        <div className="event_card_sensors">
+        <SensorInfo selectedEvent={selectedEvent} />
+        {/* <div className="event_card_sensors">
           <span className="event_card_pressure">
             <CompareArrowsIcon sx={iconStyles} />
           </span>
@@ -65,7 +71,7 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
               kPa:
             </span>
             <span>
-              
+
             </span>
           </span>
            <span className="event_card_pressure">
@@ -74,7 +80,7 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
            <span>
             hello
           </span>
-        </div>
+        </div> */}
       </MapCard>)
     }
   }

@@ -29,11 +29,13 @@ span.event_marker {
 .event_card_coordinates,
 .event_card_sensors {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   margin-top: 6px;
 }
 
+.event_card_coordinates {
+  justify-content: space-around;
+}
 .coordinates_label {
   background-color: rgb(232, 232, 232);
   padding: 10px;
@@ -67,7 +69,15 @@ span.event_marker {
   /* border: 5px solid rgb(200, 138, 22); */
 }
 
-.event_card_sensors span:nth-child(2n) {
+/* .event_card_sensors span:nth-child(2n) {
   padding: 10px;
   flex: 2 2 100px;
+} */
+
+.reel_info {
+  padding: 3px;
+  display: flex;
+  font-size: 0.8em;
+  flex-direction: column;
+  /* border: 1px solid black; */
 }
