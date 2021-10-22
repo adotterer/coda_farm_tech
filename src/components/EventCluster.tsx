@@ -25,7 +25,7 @@ export default function EventCluster({ deviceEvents }: { deviceEvents: DeviceEve
 
 
   return (
-    <MarkerClusterer onClick={(cluster) => mouseOverCluster(cluster)} zoomOnClick={true} >
+    <MarkerClusterer onClick={(cluster) => mouseOverCluster(cluster)}>
       {(clusterer) => deviceEvents.map((event) => {
         return <DevicePin key={event.id} event={event} clusterer={clusterer} />
       })}

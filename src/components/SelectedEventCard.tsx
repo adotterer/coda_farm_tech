@@ -30,19 +30,29 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
      console.log(selectedEvent, "selectedEvent");
   }, [selectedEvent])
 
-  console.log(selectedEventId, "selectedEventId");
 
   if (typeof selectedEventId === "undefined" || !selectedEvent.device_alias) {
     return null;
   } else {
-  return (
-    <MapCard onClose={ }
-      id="event-card"
-      title={selectedEvent.device_alias}>
-      {selectedEventId}
-      <hr />
-      {selectedEvent.device_alias}
-        {/* {fieldData.fieldName}: this is here */}
-    </MapCard>)
+    // const date = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(selectedEvent.event_timestamp);
+    // console.log(date, "date");
+    // const date = new Date('2014-07-04');
+    const dateTimeFormat = new Date(selectedEvent.event_timestamp);
+
+    console.log("...", dateTimeFormat.toString());
+
+    return (
+      <MapCard
+        onClose={handleClose}
+        id="event-card"
+        title={selectedEvent.device_alias}>
+        {selectedEventId}
+        <hr />
+
+        {dateTimeFormat.toString()}
+        <br />
+        {selectedEvent.device_alias}
+          {/* {fieldData.fieldName}: this is here */}
+      </MapCard>)
+    }
   }
-}
