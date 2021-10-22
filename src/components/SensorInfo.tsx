@@ -1,15 +1,25 @@
 import React from "react";
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import SensorsIcon from '@mui/icons-material/Sensors';
-import type { DeviceEvent} from "../types";
+import type { DeviceEvent } from "../types";
 
 function PressureInfo() {
   return
 }
 
+type reel = {
+  "run_speed_mmpm"?: number,
+  "state_current"?: string,
+}
+
+type pressure = {
+  "reading_kpa"?: number,
+  "state_current"?: string,
+}
+
 export default function SensorInfo({ selectedEvent }: { selectedEvent: DeviceEvent }): JSX.Element | null {
-  const [pressure, setPressure]: [kpaPressure: any, setKpaPressure: any] = React.useState({});
-  const [reel, setReel]: [reel: any, setReel: any] = React.useState({});
+  const [pressure, setPressure]: [pressure: pressure, setPressure: React.Dispatch<React.SetStateAction<{}>>] = React.useState({});
+  const [reel, setReel]: [reel: reel, setReel: React.Dispatch<React.SetStateAction<{}>>] = React.useState({});
   const iconStyles = { fontSize: "24px", color: "black" };
 
   React.useEffect(() => {
@@ -23,7 +33,7 @@ export default function SensorInfo({ selectedEvent }: { selectedEvent: DeviceEve
 
   return (
     <div className="event_card_sensors">
-      {pressure.kpaPressure && <><span className="event_card_pressure">
+      {pressure.reading_kpa && <><span className="event_card_pressure">
         <CompareArrowsIcon sx={iconStyles} />
       </span>
       <span>
@@ -31,7 +41,7 @@ export default function SensorInfo({ selectedEvent }: { selectedEvent: DeviceEve
           kPa:
           </span>
           <span>
-          {pressure.kpaPressure}
+          {pressure.reading_kpa}
           </span>
           <span>
           State:
@@ -45,9 +55,9 @@ export default function SensorInfo({ selectedEvent }: { selectedEvent: DeviceEve
           <SensorsIcon sx={iconStyles} />
         </span>
         <span className="reel_info">
-          <span>
-            Run speed: {reel.run_speed_mmpm && reel.run_speed_mmpm + "mmpm"}
-          </span>
+          {reel.run_speed_mmpm && reel.run_speed_mmpm !== 0 && <><span>
+            Run speed: {reel.run_speed_mmpm + "mmpm"}
+          </span></>}
           <span>
             State: {reel.state_current}
           </span>

@@ -66,6 +66,7 @@ export const deviceEvents = createSlice({
         const initializer: DeviceEventsState = {
           ids: [],
           entities: {},
+          clusterEvents: [],
         };
         const nextState = action.payload.reduce((accumulator, deviceEvent) => {
           return {
@@ -106,6 +107,15 @@ export const getAllDeviceEvents = (state: RootState): DeviceEvent[] => {
     return event;
   });
 };
+
+export const getAllClusterEvents = (state: RootState) => {
+  const clusterEvents = state.deviceEvents.clusterEvents;
+  if (typeof clusterEvents === "undefined") {
+    console.error("No selected cluster");
+    return [];
+  }
+  return clusterEvents;
+}
 
 const deviceEventsReducer: Reducer<DeviceEventsState> = deviceEvents.reducer;
 export default deviceEventsReducer;

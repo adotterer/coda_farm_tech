@@ -4,6 +4,10 @@ export type MarkerLabel = {
   id: number;
 }
 
+export interface MapState {
+  center: {lat: number, lng: number};
+}
+
 //! DO NOT MODIFY
 
 export type DeviceEvent = {

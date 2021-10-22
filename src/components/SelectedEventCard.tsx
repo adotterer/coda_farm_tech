@@ -13,9 +13,10 @@ import SensorInfo from "./SensorInfo"
 
 // *****
 
-export default function SelectedEventCard({ deviceEvents }: { deviceEvents: DeviceEvent[] }): JSX.Element | null {
+export default function SelectedEventCard(): JSX.Element | null {
   const [selectedEvent, setSelectedEvent]: [selectedEvent: any, setSelectedEvent: any] = React.useState({device_alias: null})
   const dispatch = useDispatch();
+  const deviceEvents = useSelector((state) => state.deviceEvents.entities);
   const selectedEventId = useSelector((state) => state.deviceEvents.selectedId);
 
    const handleClose = (): void => {
@@ -26,7 +27,7 @@ export default function SelectedEventCard({ deviceEvents }: { deviceEvents: Devi
     if (typeof selectedEventId === "number") {
       setSelectedEvent(deviceEvents[selectedEventId])
     }
-  }, [deviceEvents])
+  }, [deviceEvents, selectedEventId])
 
    React.useEffect(() => {
      console.log(selectedEvent, "selectedEvent");

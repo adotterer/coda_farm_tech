@@ -2,7 +2,7 @@ import React from "react";
 import { Marker } from "@react-google-maps/api";
 import { Clusterer } from "@react-google-maps/marker-clusterer";
 import type { DeviceEvent } from "../types";
-import { clickDeviceEvent } from "../reducers";
+import { clickDeviceEvent, setMapCenter } from "../reducers";
 import { useDispatch} from "react-redux";
 
 const svgMarker = {
@@ -35,8 +35,10 @@ export default function DevicePin({ event, clusterer }: { event: DeviceEvent, cl
     className: "event_device_pin"
   };
 
+
   const handleClick = ():void => {
-    dispatch(clickDeviceEvent(event.id))
+    dispatch(clickDeviceEvent(event.id));
+    dispatch(setMapCenter({ lat, lng }));
   }
 
   return <Marker

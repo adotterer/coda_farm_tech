@@ -16,16 +16,25 @@ import "./map_pins.css"
 
 export default function EventCluster({ deviceEvents }: { deviceEvents: DeviceEvent[] }) {
   const dispatch = useDispatch();
+  const [clusterEvents, setClusterEvents] = React.useState()
+  // function handleClick(cluster: Cluster) {
+  //   console.log(cluster.markers, "cluster!")
 
-  function mouseOverCluster(cluster: Cluster) {
-    const labels = cluster.markers
+  // }
+
+  React.useEffect(() => {
+    console.log(clusterEvents, "clusterEvents")
+  }, [clusterEvents]);
+
+  const handleClick = React.useCallback((cluster): void => {
+      const labels = cluster.markers
       .map((marker: MarkerExtended) => marker.getLabel());
-    if(labels) dispatch(clickClusterEvent(labels));
-  }
-
+    // if(labels) dispatch(clickClusterEvent(labels));
+    if (labels) setClusterEvents(labels);
+  },[])
 
   return (
-    <MarkerClusterer onClick={(cluster) => mouseOverCluster(cluster)}>
+    <MarkerClusterer zoomOnClick={false} onClick={(cluster) => handleClick(cluster)}>
       {(clusterer) => deviceEvents.map((event) => {
         return <DevicePin key={event.id} event={event} clusterer={clusterer} />
       })}

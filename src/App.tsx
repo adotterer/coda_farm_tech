@@ -14,9 +14,12 @@ import {
   getAllFields,
   getFieldById,
   getFieldCenterById,
+  getAllClusterEvents,
+  setMapCenter,
 } from "./reducers";
 import { RootState } from "./reducers/store";
 import type { DeviceEvent, Field } from "./types";
+import { MapState } from "./types";
 
 /**
  * A marker will be rendered here immediately when the map loads
@@ -106,9 +109,9 @@ type Props = ReturnType<typeof mapStateToProps>;
  */
 function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
   const dispatch = useDispatch();
-
+  const {center: mapCenter}:MapState = useSelector((state) => state.map);
   const mapRef = React.useRef<google.maps.Map | null>(null);
-
+  window.setMapCenter = setMapCenter;
   /**
    * Get a reference to the google map instance when it loads so that you
    * can access its methods, getters, setters, etc.
@@ -129,17 +132,21 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
     [dispatch]
   );
 
-  React.useEffect(
-    /**
-     * Once fields are loaded, fit the map to them.
-     */
-    () => {
-      if (typeof bounds !== "undefined" && mapRef.current !== null) {
-        mapRef.current.fitBounds(bounds);
-      }
-    },
-    [bounds]
-  );
+  // React.useEffect(
+  //   /**
+  //    * Once fields are loaded, fit the map to them.
+  //    */
+  //   () => {
+  //     if (typeof bounds !== "undefined" && mapRef.current !== null) {
+  //       mapRef.current.fitBounds(bounds);
+  //     }
+  //   },
+  //   [bounds]
+  // );
+
+  React.useEffect(() => {
+    console.log("new map center", mapCenter)
+  },[mapCenter])
 
   return (
     <div id="app-root" className="app-root">
@@ -168,16 +175,18 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
         <Switch>
           <Route exact path="/events">
             <div className="events-page">
+              {console.log(mapCenter, "ehllomap")}
               <GoogleMap
               onLoad={getMapRef}
-              id="main-map"
+              id="event-map"
               mapTypeId="satellite"
               options={MAP_OPTIONS}
               zoom={13}
               mapContainerClassName="map-container"
-              center={FARM_LOCATION}
+              center={mapCenter}
+
               >
-                <SelectedEventCard deviceEvents={deviceEvents} />
+                <SelectedEventCard />
                 <EventCluster deviceEvents={deviceEvents} />
                  {fields.map((field) => (
                 <FieldPolygon key={field.id} fieldId={field.id} />
@@ -193,7 +202,7 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
               options={MAP_OPTIONS}
               zoom={13}
               mapContainerClassName="map-container"
-              center={FARM_LOCATION}
+              center={mapCenter}
             >
               <SelectedFieldCard />
               {fields.map((field) => (

@@ -63,12 +63,6 @@ span.event_marker {
   justify-content: center;
 }
 
-.event_card_sensors {
-  /* color: pink; */
-  /* flex-grow: 1; */
-  /* border: 5px solid rgb(200, 138, 22); */
-}
-
 /* .event_card_sensors span:nth-child(2n) {
   padding: 10px;
   flex: 2 2 100px;
