@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clickField, getFieldById, getFieldCenterById } from "../reducers";
 import MapMarkerMemoized from "./MapMarkerMemoized";
 
+
 const FIELD_OPTIONS: google.maps.PolygonOptions = {
   fillColor: "blue",
   fillOpacity: 0.5,

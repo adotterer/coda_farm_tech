@@ -5,14 +5,15 @@ import {
   Reducer,
 } from "@reduxjs/toolkit";
 import { getEventDataFromMockedApi } from "../api";
-import { DeviceEvent, MarkerLabel } from "../types";
+import { DeviceEvent } from "../types";
 import { RootState } from "./store";
+import { MarkerLabel } from "../types";
 
 export interface DeviceEventsState {
   ids: number[];
   entities: { [id: number]: DeviceEvent };
   selectedId?: number;
-  clusterEvents?: DeviceEvent[];
+  clusterEvents?: MarkerLabel[];
   status?: "pending" | "fulfilled" | "rejected";
 }
 
@@ -46,12 +47,9 @@ export const deviceEvents = createSlice({
     clickDeviceEvent(state, action: PayloadAction<number>) {
       state.selectedId = action.payload;
     },
-    clickClusterEvent(state, action: PayloadAction<MarkerLabel[]>) {
+    clickClusterEvent(state, action: PayloadAction<any[]>) {
       console.log(action.payload, "action payload from reducer");
-
-      // state.clusterEvents = action.payload.map((cluster) => {
-      //   // return state.entities[cluster.label.id]
-      // });
+      state.clusterEvents = action.payload;
     }
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
