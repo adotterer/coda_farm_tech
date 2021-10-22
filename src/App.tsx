@@ -109,9 +109,9 @@ type Props = ReturnType<typeof mapStateToProps>;
  */
 function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
   const dispatch = useDispatch();
-  const {center: mapCenter}:MapState = useSelector((state) => state.map);
+  const {center: mapCenter, centerSelected, zoom}:MapState = useSelector((state) => state.map);
   const mapRef = React.useRef<google.maps.Map | null>(null);
-  window.setMapCenter = setMapCenter;
+  // window.setMapCenter = setMapCenter;
   /**
    * Get a reference to the google map instance when it loads so that you
    * can access its methods, getters, setters, etc.
@@ -132,17 +132,17 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
     [dispatch]
   );
 
-  // React.useEffect(
-  //   /**
-  //    * Once fields are loaded, fit the map to them.
-  //    */
-  //   () => {
-  //     if (typeof bounds !== "undefined" && mapRef.current !== null) {
-  //       mapRef.current.fitBounds(bounds);
-  //     }
-  //   },
-  //   [bounds]
-  // );
+  React.useEffect(
+    /**
+     * Once fields are loaded, fit the map to them.
+     */
+    () => {
+      if (typeof bounds !== "undefined" && mapRef.current !== null && !centerSelected) {
+        mapRef.current.fitBounds(bounds);
+      }
+    },
+    [bounds, centerSelected]
+  );
 
   React.useEffect(() => {
     console.log("new map center", mapCenter)
@@ -181,7 +181,7 @@ function App({ bounds, fields, deviceEvents }: Props): JSX.Element {
               id="event-map"
               mapTypeId="satellite"
               options={MAP_OPTIONS}
-              zoom={13}
+              zoom={zoom}
               mapContainerClassName="map-container"
               center={mapCenter}
 

@@ -6,7 +6,9 @@ import {
 import {MapState} from "../types"
 
 const initialState:MapState = {
-  center: {lat: 48.4923659, lng: -122.3577212}
+  center: { lat: 48.4923659, lng: -122.3577212 },
+  centerSelected: false,
+  zoom: 13,
 };
 
 export const map = createSlice({
@@ -15,7 +17,8 @@ export const map = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setMapCenter(state, action) {
-      // console.log("action.payload",)
+      state.centerSelected = true;
+      state.zoom = 16;
       state.center = action.payload;
     }
   },

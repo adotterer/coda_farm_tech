@@ -5,7 +5,9 @@ export type MarkerLabel = {
 }
 
 export interface MapState {
-  center: {lat: number, lng: number};
+  center: { lat: number, lng: number };
+  centerSelected: boolean;
+  zoom: number
 }
 
 //! DO NOT MODIFY
